@@ -36,10 +36,20 @@ public class Lab8P1_DenisLopez {
                     break;
                 }
                 case 3:{
-                  
+                    if (pokemons.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "El pokemon no existe");
+                    } else {
+                        modificarPokemon();
+                    }
+                    break;    
                 }
                 case 4:{
-                    
+                    if (pokemons.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "El pokemon no existe");
+                    } else {
+                        eliminarPokemon();
+                    }
+                    break;
                 }
                 case 5:{
                     mostrarTodos();
@@ -47,9 +57,11 @@ public class Lab8P1_DenisLopez {
                 }
                 case 6:{
                     
+                    break;
                 }
                 case 7:{
                     
+                    break;
                 }
                 default:{
                     
@@ -94,7 +106,59 @@ public class Lab8P1_DenisLopez {
     
     public static void consultarPokemon(){
         mostrarTodos();
-        
+        int consultar= Integer.parseInt(JOptionPane.showInputDialog("Seleccione el Pokémon por número para consultar:"));
+        if(consultar>=0&&consultar<pokemons.size()){
+            JOptionPane.showMessageDialog(null, pokemons.get(consultar).toString());
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"El pokemon no se encuentra aqui");
+        }
+    }
+    
+    public static void modificarPokemon(){
+        mostrarTodos();
+        int modificar= Integer.parseInt(JOptionPane.showInputDialog("Seleccione el Pokémon por número para modificar:"));
+        if (modificar<0||modificar >= pokemons.size()) {
+            JOptionPane.showMessageDialog(null, "Índice no existe");
+            return;
+        }
+        Pokémon p = pokemons.get(modificar);
+        String nombre = JOptionPane.showInputDialog("Nuevo nombre:",p.getNombre());
+        String tipo = JOptionPane.showInputDialog("Nuevo tipo:", p.getTipo());
+        int nivel = Integer.parseInt(JOptionPane.showInputDialog("Nivel (1-100):", p.getNivel()));
+        if (nivel<1||nivel>100) {
+            nivel = Integer.parseInt(JOptionPane.showInputDialog("Nivel incorrecto (1-100):"));
+        }
+        int salud = Integer.parseInt(JOptionPane.showInputDialog("Salud (0-100):", p.getSalud()));
+        if (salud<0||salud>100) {
+            salud = Integer.parseInt(JOptionPane.showInputDialog("Salud incorrecto (0-100):"));
+        }
+        int ataque = Integer.parseInt(JOptionPane.showInputDialog("Ataque (1-100):", p.getAtaque()));
+        if (ataque<1||ataque>100) {
+            ataque = Integer.parseInt(JOptionPane.showInputDialog("Ataque incorrecto (1-100):"));
+        }
+        int defensa = Integer.parseInt(JOptionPane.showInputDialog("Defensa (1-100):", p.getDefensa()));
+        if (defensa<1||defensa>100) {
+            defensa = Integer.parseInt(JOptionPane.showInputDialog("Defensa incorrecto (1-100):"));
+        }
+        p.setNombre(nombre);
+        p.setTipo(tipo);
+        p.setNivel(nivel);
+        p.setSalud(salud);
+        p.setAtaque(ataque);
+        p.setDefensa(defensa);
+        JOptionPane.showMessageDialog(null, "Pokémon modificado");
+    }
+    
+     public static void eliminarPokemon() { 
+        mostrarTodos();
+        int eliminar = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el Pokémon por número para eliminar:"));
+        if (eliminar >= 0 && eliminar < pokemons.size()) {
+            pokemons.remove(eliminar);
+            JOptionPane.showMessageDialog(null, "Pokémon eliminado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Índice no existe");
+        }
     }
     
     public static void mostrarTodos(){
