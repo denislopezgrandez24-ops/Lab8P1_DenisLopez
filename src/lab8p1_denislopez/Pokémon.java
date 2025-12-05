@@ -21,19 +21,19 @@ public class Pokémon {
     }
 
     public Pokémon(String nombre, String tipo, int nivel, int salud, int ataque, int defensa) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        setNivel(nivel);    
-        setSalud(salud);
-        setAtaque(ataque);
-        setDefensa(defensa);
+        this.nombre=nombre;
+        this.tipo=tipo;
+        this.nivel=nivel; 
+        this.salud=salud;
+        this.ataque=ataque;
+        this.defensa=defensa;
     }
 
     public String getNombre(){ 
         return nombre; 
     }
     
-    public void setNombre(String Nombre){
+    public void setNombre(String nombre){
         this.nombre=nombre;
     }
     
@@ -88,7 +88,5 @@ public class Pokémon {
     @Override
     public String toString() {
         return this.nombre+" "+this.tipo+" "+this.nivel+" "+this.salud+" "+this.ataque+" "+this.defensa;
-    }
-    
-    
+    }   
 }
